@@ -6,6 +6,13 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --black: #3B434E;
+  --white: white;
+  --primary: #7653FC;
+  --red: #FC836D;
+  --green: #1DC37E;
+  --green-light: #C8F8E4;
+  --font-family: 'Noto Sans', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,13 +24,9 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--black);
+  font-family: 'Noto Sans', sans-serif;
+  background: #F5F6F8;
 }
 
 @layer utilities {
