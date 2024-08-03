@@ -1,5 +1,5 @@
 import React from 'react';
-import ArrowIcom from './arrow.svg';
+import ArrowIcon from './arrow.svg';
 import cn from 'classnames';
 import { ButtonProps } from './Button.props';
 import styles from './Button.module.css';
@@ -26,7 +26,7 @@ export const Buutton = ({
             [styles.down]: arrow == 'down',
           })}
         >
-          <ArrowIcom />
+          <ArrowIcon />
         </span>
       )}
     </button>
