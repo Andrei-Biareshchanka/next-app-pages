@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, KeyboardEvent } from 'react';
 import StarIcon from './star.svg';
 import cn from 'classnames';
 import { RatingProps } from './RatingProps';
@@ -12,7 +12,7 @@ export const Rating = ({
   setRating,
   ...props
 }: RatingProps): JSX.Element => {
-  const [ratingArray, setratingArray] = useState<JSX.Element[]>(
+  const [ratingArray, setRatingArray] = useState<JSX.Element[]>(
     new Array(5).fill(<></>)
   );
 
@@ -22,17 +22,50 @@ export const Rating = ({
 
   const constructRating = (currrentRating: number) => {
     const updatedArray = ratingArray.map((r: JSX.Element, i: number) => (
-      <StarIcon
+      <span
         key={i}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         className={cn(styles.star, {
           [styles.filled]: i < currrentRating,
+          [styles.editable]: isEditable,
         })}
-      />
+        onMouseEnter={() => changeDisplay(i + 1)}
+        onMouseLeave={() => changeDisplay(rating)}
+        onClick={() => onClick(i + 1)}
+      >
+        <StarIcon
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          tabIndex={isEditable ? 0 : -1}
+          onKeyDown={(e: KeyboardEvent<SVGAElement>) =>
+            isEditable && handleSpace(i + 1, e)
+          }
+        />
+      </span>
     ));
 
-    setratingArray(updatedArray);
+    setRatingArray(updatedArray);
+  };
+
+  const changeDisplay = (i: number) => {
+    if (!isEditable) {
+      return;
+    }
+    constructRating(i);
+  };
+
+  const onClick = (i: number) => {
+    if (!isEditable || !setRating) {
+      return;
+    }
+    setRating(i);
+  };
+
+  const handleSpace = (i: number, e: KeyboardEvent<SVGAElement>) => {
+    if (e.code != 'Space' || !setRating) {
+      return;
+    }
+
+    setRating(i);
   };
 
   return (
