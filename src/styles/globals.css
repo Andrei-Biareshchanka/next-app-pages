@@ -7,15 +7,15 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --black: #3B434E;
-  --grey-light: #EBEBEB;
-  --grey-dark: #787D85;
+  --gray-light: #EBEBEB;
+  --gray-dark: #787D85;
   --white: white;
   --primary: #7653FC;
-  --primary-hover: #5B36EF;
+  --primary-hover: #6344df;
   --red: #FC836D;
   --green: #1DC37E;
   --green-light: #C8F8E4;
-  --font-family: 'Noto Sans', sans-serif;
+  --font-family: 'Noto Sans KR', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
