@@ -11,7 +11,7 @@ import { MenuItem } from '../../interfaces/menu.interface';
 
 const inter = Noto_Sans({ subsets: ['latin', 'cyrillic'] });
 
-function Home({ menu }: HomeProps) {
+function Home() {
   const [rating, setRating] = useState<number>(4);
 
   return (
@@ -46,11 +46,6 @@ function Home({ menu }: HomeProps) {
           primary
         </Tag>
         <Rating rating={rating} setRating={setRating} isEditable />
-        <ul>
-          {menu.map((m) => (
-            <li key={m._id.secondCategory}>{m._id.secondCategory}</li>
-          ))}
-        </ul>
       </main>
     </>
   );
