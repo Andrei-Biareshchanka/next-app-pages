@@ -1,4 +1,4 @@
-import { HhData, Htag, P, Sort, Tag } from '@/components';
+import { HhData, Htag, Sort, Tag } from '@/components';
 import { TopPageComponentProps } from './TopPageComponent.ptops';
 import styles from './TopPageCompoennt.module.css';
 import { TopLevelCategory } from '../../../interfaces/page.interface';
