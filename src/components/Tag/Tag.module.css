@@ -46,7 +46,7 @@
 }
 
 .primary {
-  color: var(--rimary);
+  color: var(--primary);
   background: none;
-  border: 1px solid var(--rimary);
+  border: 1px solid var(--primary);
 }
