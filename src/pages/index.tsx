@@ -2,7 +2,15 @@
 
 import Head from 'next/head';
 import { Noto_Sans } from 'next/font/google';
-import { Buutton, Htag, P, Rating, Tag } from '@/components/index';
+import {
+  Button,
+  Htag,
+  Input,
+  P,
+  Rating,
+  Tag,
+  Textarea,
+} from '@/components/index';
 import { useState } from 'react';
 import { withLayout } from '@/layout/Layout';
 import axios from 'axios';
@@ -21,12 +29,12 @@ function Home() {
       </Head>
       <main className={`${inter.className}`}>
         <Htag tag="h1">Title</Htag>
-        <Buutton appearance="primary" arrow="down">
+        <Button appearance="primary" arrow="down">
           btn 1
-        </Buutton>
-        <Buutton appearance="ghost" arrow="right">
+        </Button>
+        <Button appearance="ghost" arrow="right">
           btn 2
-        </Buutton>
+        </Button>
         <P size="s">some text s</P>
         <P size="m">some text m</P>
         <P size="l">some text l</P>
@@ -46,6 +54,8 @@ function Home() {
           primary
         </Tag>
         <Rating rating={rating} setRating={setRating} isEditable />
+        <Input placeholder="test" />
+        <Textarea placeholder="test 2" />
       </main>
     </>
   );

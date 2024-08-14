@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { ButtonProps } from './Button.props';
 import styles from './Button.module.css';
 
-export const Buutton = ({
+export const Button = ({
   appearance,
   arrow = 'none',
   children,
