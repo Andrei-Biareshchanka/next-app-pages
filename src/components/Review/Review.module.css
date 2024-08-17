@@ -8,14 +8,6 @@
   font-size: 14px;
   line-height: 24px;
   margin-bottom: 16px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--grey-light);
-}
-
-.review:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
 }
 
 .description {
