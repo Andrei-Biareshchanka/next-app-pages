@@ -4,7 +4,7 @@ import styles from './TopPageComponent.module.css';
 import { TopLevelCategory } from '../../../interfaces/page.interface';
 import { Advantages } from '@/components/Advantages/Advantages';
 import { SortEnum } from '@/components/Sort/SortProps';
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { sortReducer } from './sort.reducer';
 
 export const TopPageComponent = ({
@@ -19,6 +19,10 @@ export const TopPageComponent = ({
       sort: SortEnum.Rating,
     }
   );
+
+  useEffect(() => {
+    dispatchSort({ type: 'reset', initialState: products });
+  }, [products]);
 
   const setSort = (sort: SortEnum) => {
     dispatchSort({ type: sort });
