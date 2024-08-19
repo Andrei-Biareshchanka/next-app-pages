@@ -4,7 +4,10 @@ import styles from './ReviewForm.module.css';
 import { Button, Input, Rating, Textarea } from '@/components';
 import CrossIcon from './cross.svg';
 import { useForm, Controller } from 'react-hook-form';
-import { IReviewForm } from './ReviewForm.interface';
+import { IReviewForm, IReviewSentResponse } from './ReviewForm.interface';
+import axios from 'axios';
+import { API } from '../../../helpers/api';
+import { useState } from 'react';
 
 export const ReviewForm = ({
   productId,
@@ -16,10 +19,28 @@ export const ReviewForm = ({
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<IReviewForm>();
 
-  const onSubmit = (data: IReviewForm) => {
-    console.log(data);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [error, setError] = useState<string>();
+
+  const onSubmit = async (formData: IReviewForm) => {
+    console.log(formData);
+    try {
+      const { data } = await axios.post<IReviewSentResponse>(
+        API.review.createDemo,
+        { ...formData, productId }
+      );
+      if (data.message) {
+        setIsSuccess(true);
+        reset();
+      } else {
+        setError('Что-то пошло не так');
+      }
+    } catch (e) {
+      setError(e.message);
+    }
   };
 
   return (
@@ -60,7 +81,7 @@ export const ReviewForm = ({
           />
         </div>
         <Textarea
-          {...register('descriptions', {
+          {...register('description', {
             required: { value: true, message: 'Заполните описание' },
           })}
           className={styles.description}
@@ -75,11 +96,25 @@ export const ReviewForm = ({
           </span>
         </div>
       </div>
-      <div className={styles.success}>
-        <div className={styles.successTitle}>Ваш отзыв отправлен</div>
-        <div>Спасибо, ваш отзыв будет опубликован после проверки</div>
-        <CrossIcon className={styles.cross} />
-      </div>
+      {isSuccess && (
+        <div className={cn(styles.success, styles.panel)}>
+          <div className={styles.successTitle}>Ваш отзыв отправлен</div>
+          <div>Спасибо, ваш отзыв будет опубликован после проверки</div>
+          <CrossIcon
+            className={styles.cross}
+            onClick={() => setIsSuccess(false)}
+          />
+        </div>
+      )}
+      {error && (
+        <div className={cn(styles.error, styles.panel)}>
+          Что-то пошло не так, попробуйте позже
+          <CrossIcon
+            className={styles.cross}
+            onClick={() => setError(undefined)}
+          />
+        </div>
+      )}
     </form>
   );
 };
