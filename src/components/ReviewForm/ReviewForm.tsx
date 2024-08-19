@@ -39,7 +39,11 @@ export const ReviewForm = ({
         setError('Что-то пошло не так');
       }
     } catch (e) {
-      setError(e.message);
+      if (e instanceof Error) {
+        setError(e.message);
+      } else {
+        setError(String(e));
+      }
     }
   };
 
@@ -86,7 +90,7 @@ export const ReviewForm = ({
           })}
           className={styles.description}
           placeholder="Текст отзыва"
-          error={errors.descriptions}
+          error={errors.description}
         />
         <div className={styles.submit}>
           <Button appearance="primary">Отправить</Button>
