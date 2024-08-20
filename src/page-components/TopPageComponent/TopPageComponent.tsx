@@ -6,7 +6,6 @@ import { Advantages } from '@/components/Advantages/Advantages';
 import { SortEnum } from '@/components/Sort/SortProps';
 import { useEffect, useReducer } from 'react';
 import { sortReducer } from './sort.reducer';
-
 export const TopPageComponent = ({
   firstCategory,
   page,
@@ -42,7 +41,7 @@ export const TopPageComponent = ({
 
       <div>
         {sortedProducts &&
-          sortedProducts.map((p) => <Product key={p._id} product={p} />)}
+          sortedProducts.map((p) => <Product layout key={p._id} product={p} />)}
       </div>
 
       <div className={styles.hhTitle}>
