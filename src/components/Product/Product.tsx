@@ -12,13 +12,13 @@ import {
 } from '@/components';
 import { declOfNum, priceRu } from '../../../helpers/helpers';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { ForwardedRef, forwardRef, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 
-export const Product = ({
-  product,
-  className,
-  ...props
-}: ProductProps): JSX.Element => {
+export const ProductRef = (
+  { product, className, ...props }: ProductProps,
+  ref: ForwardedRef<HTMLDivElement>
+): JSX.Element => {
   const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
   const reviewRef = useRef<HTMLDivElement>(null);
 
@@ -31,7 +31,7 @@ export const Product = ({
   };
 
   return (
-    <div className={className} {...props}>
+    <div className={className} {...props} ref={ref}>
       <Card className={styles.product}>
         <div className={styles.logo}>
           <Image
@@ -128,3 +128,5 @@ export const Product = ({
     </div>
   );
 };
+
+export const Product = motion(forwardRef(ProductRef));
