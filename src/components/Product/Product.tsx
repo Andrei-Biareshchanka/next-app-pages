@@ -30,6 +30,17 @@ export const ProductRef = (
     });
   };
 
+  const variants = {
+    visible: {
+      opacity: 1,
+      height: 'auto',
+    },
+    hidden: {
+      opacity: 0,
+      height: 0,
+    },
+  };
+
   return (
     <div className={className} {...props} ref={ref}>
       <Card className={styles.product}>
@@ -109,22 +120,21 @@ export const ProductRef = (
           </Button>
         </div>
       </Card>
-      <Card
-        ref={reviewRef}
-        color="blue"
-        className={cn(styles.reviews, {
-          [styles.opened]: isReviewOpened,
-          [styles.closed]: !isReviewOpened,
-        })}
+      <motion.div
+        variants={variants}
+        initial={'hidden'}
+        animate={isReviewOpened ? 'visible' : 'hidden'}
       >
-        {product.reviews.map((r) => (
-          <div key={r._id}>
-            <Review review={r} />
-            <Divider />
-          </div>
-        ))}
-        <ReviewForm productId={product._id} />
-      </Card>
+        <Card ref={reviewRef} color="blue" className={styles.reviews}>
+          {product.reviews.map((r) => (
+            <div key={r._id}>
+              <Review review={r} />
+              <Divider />
+            </div>
+          ))}
+          <ReviewForm productId={product._id} />
+        </Card>
+      </motion.div>
     </div>
   );
 };
