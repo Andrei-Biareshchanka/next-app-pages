@@ -11,7 +11,7 @@ export const Sort = ({
 }: SortProps): JSX.Element => {
   return (
     <div className={cn(className, styles.sort)} {...props}>
-      <span
+      <button
         onClick={() => setSort(SortEnum.Rating)}
         className={cn({
           [styles.active]: sort == SortEnum.Rating,
@@ -19,8 +19,8 @@ export const Sort = ({
       >
         <SortIcon className={styles.sortIcon} />
         По рейтингу
-      </span>
-      <span
+      </button>
+      <button
         onClick={() => setSort(SortEnum.Price)}
         className={cn({
           [styles.active]: sort == SortEnum.Price,
@@ -28,7 +28,7 @@ export const Sort = ({
       >
         <SortIcon className={styles.sortIcon} />
         По цене
-      </span>
+      </button>
     </div>
   );
 };
