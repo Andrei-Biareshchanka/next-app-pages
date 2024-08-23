@@ -62,7 +62,16 @@ const RatingRef = (
         onClick={() => onClick(i + 1)}
         tabIndex={computeFocus(rating, i)}
         onKeyDown={handleKey}
-        ref={(r) => ratingArrayRef.current?.push(r)}
+        ref={(r) => {
+          if (r) {
+            ratingArrayRef.current?.push(r);
+          }
+        }}
+        role={isEditable ? 'slider' : ''}
+        aria-valuenow={rating}
+        aria-valuemin={1}
+        aria-valuemax={5}
+        aria-label={isEditable ? 'Укажите рейтинг' : 'рейтинг' + rating}
       >
         <StarIcon />
       </span>
