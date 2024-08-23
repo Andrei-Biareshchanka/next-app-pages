@@ -21,6 +21,7 @@ export const ReviewForm = ({
     handleSubmit,
     formState: { errors },
     reset,
+    clearErrors,
   } = useForm<IReviewForm>();
 
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -58,6 +59,7 @@ export const ReviewForm = ({
           placeholder="Имя"
           error={errors.name}
           tabIndex={isOpened ? 0 : -1}
+          aria-invalid={!!errors.name}
         />
         <Input
           {...register('title', {
@@ -67,6 +69,7 @@ export const ReviewForm = ({
           placeholder="Заголовок отзыва"
           error={errors.title}
           tabIndex={isOpened ? 0 : -1}
+          aria-invalid={!!errors.title}
         />
         <div className={styles.rating}>
           <span>Оценка:</span>
@@ -97,9 +100,14 @@ export const ReviewForm = ({
           error={errors.description}
           tabIndex={isOpened ? 0 : -1}
           aria-label="Текст отзыва"
+          aria-invalid={!!errors.description}
         />
         <div className={styles.submit}>
-          <Button tabIndex={isOpened ? 0 : -1} appearance="primary">
+          <Button
+            tabIndex={isOpened ? 0 : -1}
+            appearance="primary"
+            onClick={() => clearErrors()}
+          >
             Отправить
           </Button>
           <span className={styles.info}>
