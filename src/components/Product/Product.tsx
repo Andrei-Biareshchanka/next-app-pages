@@ -55,17 +55,25 @@ export const ProductRef = (
         </div>
         <div className={styles.title}>{product.title}</div>
         <div className={styles.price}>
-          {priceRu(product.price)}
+          <span>
+            <span className="visuallyHidden">цена</span>
+            {priceRu(product.price)}
+          </span>
           {product.oldPrice && (
             <Tag color="green" className={styles.oldPrice}>
+              <span className="visuallyHidden">скидка</span>
               {priceRu(product.price - product.oldPrice)}
             </Tag>
           )}
         </div>
         <div className={styles.credit}>
+          <span className="visuallyHidden">кредит</span>
           {priceRu(product.credit)}/<span className={styles.month}>мес</span>
         </div>
         <div className={styles.rating}>
+          <span className="visuallyHidden">
+            {'рейтинг ' + (product.reviewAvg ?? product.initialRating)}
+          </span>
           <Rating rating={product.reviewAvg ?? product.initialRating} />
         </div>
         <div className={styles.tags}>
@@ -75,8 +83,12 @@ export const ProductRef = (
             </Tag>
           ))}
         </div>
-        <div className={styles.priceTitle}>цена</div>
-        <div className={styles.creditTitle}>кредит</div>
+        <div className={styles.priceTitle} aria-hidden={true}>
+          цена
+        </div>
+        <div className={styles.creditTitle} aria-hidden={true}>
+          кредит
+        </div>
         <div className={styles.rateTitle}>
           <a href="#ref" onClick={scrollToReview}>
             {product.reviewCount}{' '}

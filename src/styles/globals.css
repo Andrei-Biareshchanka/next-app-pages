@@ -20,6 +20,13 @@
   --font-family: 'Noto Sans KR', sans-serif;
 }
 
+.visuallyHidden {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+} 
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
