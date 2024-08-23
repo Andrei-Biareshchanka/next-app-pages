@@ -96,6 +96,7 @@ export const ReviewForm = ({
           placeholder="Текст отзыва"
           error={errors.description}
           tabIndex={isOpened ? 0 : -1}
+          aria-label="Текст отзыва"
         />
         <div className={styles.submit}>
           <Button tabIndex={isOpened ? 0 : -1} appearance="primary">
