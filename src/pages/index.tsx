@@ -2,62 +2,29 @@
 
 import Head from 'next/head';
 import { Noto_Sans } from 'next/font/google';
-import {
-  Button,
-  Htag,
-  Input,
-  P,
-  Rating,
-  Tag,
-  Textarea,
-} from '@/components/index';
-import { useState } from 'react';
 import { withLayout } from '@/layout/Layout';
 import axios from 'axios';
 import { GetStaticProps } from 'next';
 import { MenuItem } from '../../interfaces/menu.interface';
 import { API } from '../../helpers/api';
+import { YMInitializer } from 'react-yandex-metrika';
 
 const inter = Noto_Sans({ subsets: ['latin', 'cyrillic'] });
 
 function Home() {
-  const [rating, setRating] = useState<number>(4);
-
   return (
     <>
       <Head>
         <title>Next JS Page App</title>
+        <link rel="preconnect" href="https://mc.yandex.ru" />
+        <meta property="og:url" content={process.env.NODE_ENV} />
       </Head>
-      <main className={`${inter.className}`}>
-        <Htag tag="h1">Title</Htag>
-        <Button appearance="primary" arrow="down">
-          btn 1
-        </Button>
-        <Button appearance="ghost" arrow="right">
-          btn 2
-        </Button>
-        <P size="s">some text s</P>
-        <P size="m">some text m</P>
-        <P size="l">some text l</P>
-        <Tag size="s" color="ghost">
-          ghost
-        </Tag>
-        <Tag size="m" color="red">
-          red
-        </Tag>
-        <Tag size="m" color="green">
-          green
-        </Tag>
-        <Tag size="m" color="grey">
-          grey
-        </Tag>
-        <Tag size="m" color="primary">
-          primary
-        </Tag>
-        <Rating rating={rating} setRating={setRating} isEditable />
-        <Input placeholder="test" />
-        <Textarea placeholder="test 2" />
-      </main>
+      <YMInitializer
+        accounts={[]} // [] - numbers of accounts in ym
+        options={{ webvisor: true, defer: true }}
+        version="2"
+      />
+      <main className={`${inter.className}`}></main>
     </>
   );
 }
