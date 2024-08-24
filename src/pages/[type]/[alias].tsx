@@ -13,14 +13,23 @@ import { ProductModel } from '../../../interfaces/product.interface';
 import { firstLevelMenu } from '../../../helpers/helpers';
 import { TopPageComponent } from '../../page-components/index';
 import { API } from '../../../helpers/api';
+import Head from 'next/head';
 
 function TopPage({ products, firstCategory, page }: TopPage) {
   return (
-    <TopPageComponent
-      firstCategory={firstCategory}
-      page={page}
-      products={products}
-    />
+    <>
+      <Head>
+        <title>{page.metaTitle}</title>
+        <meta name="description" content={page.metaDescription} />
+        <meta property="og:title" content={page.title} />
+        <meta property="og:description" content={page.metaDescription} />
+      </Head>
+      <TopPageComponent
+        firstCategory={firstCategory}
+        page={page}
+        products={products}
+      />
+    </>
   );
 }
 
