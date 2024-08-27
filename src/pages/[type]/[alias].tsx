@@ -14,8 +14,13 @@ import { firstLevelMenu } from '../../../helpers/helpers';
 import { TopPageComponent } from '../../page-components/index';
 import { API } from '../../../helpers/api';
 import Head from 'next/head';
+import { Error404 } from '../404';
 
 function TopPage({ products, firstCategory, page }: TopPage) {
+  if (!page || !products) {
+    return <Error404 />;
+  }
+
   return (
     <>
       <Head>

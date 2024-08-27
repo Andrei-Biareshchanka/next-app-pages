@@ -7,9 +7,16 @@ import axios from 'axios';
 import { GetStaticProps } from 'next';
 import { MenuItem } from '../../interfaces/menu.interface';
 import { API } from '../../helpers/api';
-import { YMInitializer } from 'react-yandex-metrika';
+import ym, { YMInitializer } from 'react-yandex-metrika';
+import Router from 'next/router';
 
 const inter = Noto_Sans({ subsets: ['latin', 'cyrillic'] });
+
+Router.events.on('routeChangeComplete', (url: string) => {
+  if (typeof window !== 'undefined') {
+    ym('hit', url);
+  }
+});
 
 function Home() {
   return (
